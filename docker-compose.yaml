@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  laravel:
+    build: ./laravel
+    container_name: laravel_c
+    ports:
+      - 8000:8000
+    volumes:
+      - ./laravel:/var/www/html/laravel
+      - /var/www/html/laravel/vendor
+  vue:
+    build: ./vue
+    container_name: vue_c
+    ports:
+      - 8080:8080
+    volumes:
+      - ./vue:/var/www/html/vue
+      - /var/www/html/vue/node_modules

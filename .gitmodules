@@ -1,0 +1,6 @@
+[submodule "laravel"]
+	path = laravel
+	url = ./laravel
+[submodule "vue"]
+	path = vue
+	url = ./vue
