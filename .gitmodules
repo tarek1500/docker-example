@@ -1,6 +1,6 @@
 [submodule "laravel"]
 	path = laravel
-	url = ./laravel
+	url = https://github.com/tarek1500/docker-example-laravel
 [submodule "vue"]
 	path = vue
-	url = ./vue
+	url = https://github.com/tarek1500/docker-example-vue
