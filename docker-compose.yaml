@@ -1,18 +1,43 @@
 version: '3.8'
+volumes:
+  laravel_vendor: {}
+  vue_node_modules: {}
+  mysql_data: {}
 services:
   laravel:
     build: ./laravel
+    image: laravel
     container_name: laravel_c
     ports:
       - 8000:8000
     volumes:
       - ./laravel:/var/www/html/laravel
-      - /var/www/html/laravel/vendor
+      - laravel_vendor:/var/www/html/laravel/vendor
   vue:
     build: ./vue
+    image: vue
     container_name: vue_c
     ports:
       - 8080:8080
     volumes:
       - ./vue:/var/www/html/vue
-      - /var/www/html/vue/node_modules
+      - vue_node_modules:/var/www/html/vue/node_modules
+  mysql:
+    image: mysql
+    container_name: mysql_c
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_c
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 80:80
